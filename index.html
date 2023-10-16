@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Love Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .question {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>True Love Quiz</h1>
+        <form id="quizForm">
+            <div class="question">
+                <p>Question 1: I enjoy spending time outdoors.</p>
+                <input type="radio" name="q1" value="1">1
+                <input type="radio" name="q1" value="2">2
+                <input type="radio" name="q1" value="3">3
+                <input type="radio" name="q1" value="4">4
+                <input type="radio" name="q1" value="5">5
+            </div>
+            <div class="question">
+                <p>Question 2: I love pets.</p>
+                <input type="radio" name="q2" value="1">1
+                <input type="radio" name="q2" value="2">2
+                <input type="radio" name="q2" value="3">3
+                <input type="radio" name="q2" value="4">4
+                <input type="radio" name="q2" value="5">5
+            </div>
+            <div class "question">
+                <p>Question 3: I enjoy cooking together.</p>
+                <input type="radio" name="q3" value="1">1
+                <input type="radio" name="q3" value="2">2
+                <input type="radio" name="q3" value="3">3
+                <input type="radio" name="q3" value="4">4
+                <input type="radio" name="q3" value="5">5
+            </div>
+            <div class="question">
+                <p>Question 4: I like adventure and trying new things.</p>
+                <input type="radio" name="q4" value="1">1
+                <input type="radio" name="q4" value="2">2
+                <input type="radio" name="q4" value="3">3
+                <input type="radio" name="q4" value="4">4
+                <input type="radio" name="q4" value="5">5
+            </div>
+            <div class="question">
+                <p>Question 5: I value open communication in a relationship.</p>
+                <input type="radio" name="q5" value="1">1
+                <input type="radio" name="q5" value="2">2
+                <input type="radio" name="q5" value="3">3
+                <input type="radio" name="q5" value="4">4
+                <input type="radio" name="q5" value="5">5
+            </div>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("quizForm");
+            const resultContainer = document.getElementById("result");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const userAnswers = {
+                    q1: parseInt(document.querySelector('input[name="q1"]:checked').value),
+                    q2: parseInt(document.querySelector('input[name="q2"]:checked').value),
+                    q3: parseInt(document.querySelector('input[name="q3"]:checked').value),
+                    q4: parseInt(document.querySelector('input[name="q4"]:checked').value),
+                    q5: parseInt(document.querySelector('input[name="q5"]:checked').value),
+                };
+
+                const trueLoveAnswers = {
+                    q1: 5, // Adjust these values according to your preferences
+                    q2: 5,
+                    q3: 5,
+                    q4: 5,
+                    q5: 5,
+                };
+
+                let matchScore = 0;
+
+                for (const question in userAnswers) {
+                    matchScore += Math.abs(userAnswers[question] - trueLoveAnswers[question]);
+                }
+
+                const matchPercentage = ((25 - matchScore) / 25) * 100;
+
+                resultContainer.innerText = `Match: ${matchPercentage.toFixed(2)}%`;
+            });
+        });
+    </script>
+</body>
+</html>
